@@ -1,0 +1,21 @@
+
+*.iml
+*.idea
+/target
+*/settings
+.project
+*.prefs
+__pycache__/
+
+/bin/
+
+*/**.launch
+/cache
+*/.*
+**.log*
+venv/
+
+# pyinstall
+dist/
+*.spec
+build/
