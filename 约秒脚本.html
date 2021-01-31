@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 临时写的token  通过抓包获取
+        document.cookie="_xxhm_=%7B%22headerImg%22%3A%22http%3A%2F%2Fthirdwx.qlogo.cn%2Fmmopen%2FxjC97SLpMq27vFmaiccYLiaOkWWCpz3uj2oJ9UzGsnG5p9aicrJHdftibe1icrFFPFqutF6KWHktGIWNYsf941QicgQw8l5UT50ByV%2F132%22%2C%22mobile%22%3A%22199****8365%22%2C%22nickName%22%3A%22R%22%2C%22sex%22%3A2%7D; _xzkj_=wxapptoken:10:a46ff58bae9892be0657d401a46ddc33_aca0609bdfcef7aa203e1f3eda2d277f; e103=a24663734241ffdd18"
+        let xhr = new XMLHttpRequest()
+        // 获取秒杀列表接口--这个接口估计是诊所列表接口
+        xhr.open("GET","https://miaomiao.scmttec.com/seckill/seckill/list.do?offset=0&limit=10&regionCode=5101",true)
+        xhr.setRequestHeader("tk","wxapptoken:10:a46ff58bae9892be0657d401a46ddc33_aca0609bdfcef7aa203e1f3eda2d277f");
+        xhr.send()
+
+
+
+        // 抢疫苗步骤
+        /*
+        1.获取当前地区可以选择打疫苗的诊所（卫生服务中心）
+        2.选择诊所
+        3.进入详情页面 立即秒杀(不知道这里是不是有个接口)
+        4.选择接种人（接种人信息可以提前在个人中心查看找到）
+        
+
+        // todo  这里往后的接口就不能通过抓包获取了 只有等到活动当天才有机会
+        5.提交订单 （这里肯定有个提交订单接口？也有可能这里不需要调用接口）
+        6.提交成功后  选择接种日期 提交预约（最后一个接口）
+        7.预约成功后 可在我的-个人中心-我的预约 查看预约信息
+        */
+
+        /*
+        备注信息：
+        接口1---获取可以预约接种的诊所 ：
+                                    /seckill/seckill/list.do?offset=0&limit=10&regionCode=1201（天津市）
+        https://miaomiao.scmttec.com/seckill/seckill/list.do?offset=0&limit=10&regionCode=5101
+        regionCode：地区id  5101:成都市
+        
+        接口2---获取接种人信息
+        https://miaomiao.scmttec.com/seckill/linkman/findByUserId.do
+
+        [{
+            "id":6892199,
+            "userId":8345826,
+            "name":"严雪菲",
+            "idCardNo":"511525199601041462",
+            "birthday":"1996-01-04 00:00:00",
+            "sex":2,
+            "regionCode":"510104",
+            "address":"福字街",
+            "isDefault":1,
+            "relationType":1,
+            "createTime":"2020-10-15 21:43:12",
+            "modifyTime":"2020-10-15 21:43:12",
+            "yn":1
+        }]
+
+
+        服务端字段分析
+        疫苗代码
+        vaccineCode=8803（vaccineName=九价HPV疫苗基础套餐）
+        vaccineCode=8802（vaccineName=四价HPV疫苗基础套餐）
+        stock=0（疫苗剩余数量）
+        userId=8345826（严雪菲id）
+
+        */
+    </script>
+</body>
+</html>
